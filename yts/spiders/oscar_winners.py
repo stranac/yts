@@ -8,6 +8,20 @@ class OscarWinnersYTSSpider(YTSSpider):
     name = "oscar_winners"
     start_urls = ["https://en.wikipedia.org/wiki/List_of_Academy_Award-winning_films"]
 
+    custom_settings = {
+        'FEEDS': {
+            "oscar_winners.rss": {
+                "format": "rss",
+                "indent": 2,
+                "item_export_kwargs": {
+                    "feed_title": "Academy Award-winning Movies",
+                    "feed_description": "Academy Award-winning Movies from yts.mx",
+                },
+                "overwrite": True,
+            },
+        }
+    }
+
     def parse(self, response):
         """Get a list of titles of Academy Award-winning movies from wikipedia.
 
